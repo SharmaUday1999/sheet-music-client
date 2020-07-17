@@ -30,9 +30,6 @@ export default function Signup() {
 
   function validateForm() {
     return (
-      fields.firstName.length > 0 &&
-      fields.lastName.length > 0 &&
-      fields.phoneNumber.length > 0 &&
       fields.email.length > 0 &&
       fields.password.length > 0 &&
       fields.password === fields.confirmPassword
