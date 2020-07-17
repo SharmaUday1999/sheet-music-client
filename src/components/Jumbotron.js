@@ -1,7 +1,7 @@
 import React from 'react';
 import { Jumbotron as Jumbo} from 'react-bootstrap';
 import {Grid} from 'react-bootstrap';
-import './Jumbotron.css'
+import './css/Jumbotron.css'
 
 export const Jumbotron = () => (
     <Jumbo fluid className="jumbo">

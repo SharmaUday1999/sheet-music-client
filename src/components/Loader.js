@@ -1,6 +1,6 @@
 import React from "react";
 import { Glyphicon } from "react-bootstrap";
-import "./Loader.css";
+import "./css/Loader.css";
 
 export default function Loader({
   isLoading,

@@ -1,6 +1,6 @@
 
   .jumbo {
-    background: url(./assets/piano_image.jpg) no-repeat fixed bottom;
+    background: url(../assets/piano_image.jpg) no-repeat fixed bottom;
     background-size: cover;
     color: #efefef;
     height: 500px;

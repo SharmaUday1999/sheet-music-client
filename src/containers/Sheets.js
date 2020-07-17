@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ButtonGroup, Button} from "react-bootstrap";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useParams} from "react-router-dom";

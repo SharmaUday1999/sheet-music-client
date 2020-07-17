@@ -4,13 +4,15 @@ import {
   HelpBlock,
   FormGroup,
   FormControl,
-  ControlLabel
+  ControlLabel,
+  Tooltip, 
+  OverlayTrigger
 } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useAppContext } from "../libs/contextLib";
 import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
-import "./Signup.css";
+import "./css/Signup.css";
 import { Auth } from "aws-amplify";
 
 export default function Signup() {
@@ -27,6 +29,14 @@ export default function Signup() {
   const [newUser, setNewUser] = useState(null);
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
+
+
+
+  const tooltip = (
+    <Tooltip id="tooltip">
+      Password must have atleast 8 characters
+    </Tooltip>
+  );
 
   function validateForm() {
     return (
@@ -112,6 +122,7 @@ export default function Signup() {
             onChange={handleFieldChange}
           />
         </FormGroup>
+      <OverlayTrigger placement="left" overlay={tooltip}>
         <FormGroup controlId="password" bsSize="large">
           <ControlLabel>Password</ControlLabel>
           <FormControl
@@ -120,6 +131,7 @@ export default function Signup() {
             onChange={handleFieldChange}
           />
         </FormGroup>
+      </OverlayTrigger>
         <FormGroup controlId="confirmPassword" bsSize="large">
           <ControlLabel>Confirm Password</ControlLabel>
           <FormControl
@@ -128,15 +140,15 @@ export default function Signup() {
             value={fields.confirmPassword}
           />
         </FormGroup>
-        <LoaderButton
-          block
-          type="submit"
-          bsSize="large"
-          isLoading={isLoading}
-          disabled={!validateForm()}
-        >
-          Signup
-        </LoaderButton>
+          <LoaderButton
+            block
+            type="submit"
+            bsSize="large"
+            isLoading={isLoading}
+            disabled={!validateForm()}
+          >
+            Signup
+          </LoaderButton>
       </form>
     );
   }
