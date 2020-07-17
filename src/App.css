@@ -1,4 +1,6 @@
-.navbar { margin-bottom:0px;}
+.navbar { 
+  margin-bottom:0px;
+}
 
 .App .navbar-brand {
   font-weight: light;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
-import { FormGroup, FormControl, ControlLabel, Grid, Col, Row, Button} from "react-bootstrap";
+import { FormGroup, FormControl, FormLabel, Container, Col, Row, Button} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useAppContext } from "../libs/contextLib";
@@ -35,11 +35,11 @@ export default function Login() {
   }
 
   return (
-    <Grid>
+    <Container>
       <div className="Login">
         <form onSubmit={handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
+            <FormLabel>Email</FormLabel>
             <FormControl
               autoFocus
               type="email"
@@ -48,7 +48,7 @@ export default function Login() {
             />
           </FormGroup>
             <FormGroup controlId="password" bsSize="large">
-              <ControlLabel>Password</ControlLabel>
+              <FormLabel>Password</FormLabel>
               <FormControl
                 type="password"
                 value={fields.password}
@@ -75,6 +75,6 @@ export default function Login() {
           </Row>
         </form>
       </div>
-    </Grid>
+    </Container>
   );
 }

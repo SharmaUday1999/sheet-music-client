@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
+import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./css/Home.css";
@@ -47,7 +47,7 @@ export default function Browse() {
   function renderSheetMusic() {
     return (
       <div className="sheets">
-        <PageHeader><h1>All Music</h1></PageHeader>
+        <h1>All Music</h1>
         <ListGroup>{isLoading ? 
           <div className="center ">
           <Loader

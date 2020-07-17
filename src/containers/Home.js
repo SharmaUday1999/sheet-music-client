@@ -57,7 +57,7 @@ export default function Home() {
       <>
       <Jumbotron/>
       <div className="sheets container">
-        <PageHeader><h1>Browse Music</h1></PageHeader>
+        <h1>Browse Music</h1>
         <ListGroup>
           {isLoading ? 
           <div className="center ">
