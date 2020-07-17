@@ -48,7 +48,7 @@ export default function Browse() {
   function renderSheetMusic() {
     return (
       <div className="sheets">
-        <h1>All Music</h1>
+        <h1 className="h1 padding">All Music</h1>
         <ListGroup>{isLoading ? 
           <div className="center ">
           <Loader

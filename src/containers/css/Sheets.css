@@ -1,5 +1,13 @@
-.btn-static {
-    background-color: white;
-    border: 1px solid lightgrey;
-    cursor: default;
-  }
+
+.custom-btn {
+  background: #44bba4 !important;
+  color: #fff !important;
+  border: 0px solid #44bba4 !important;
+  padding: 5px 10px !important;
+  text-transform: uppercase;
+}
+
+.padding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Nav, Navbar, NavItem} from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { Nav, Navbar} from "react-bootstrap";
 import "./App.css";
 import Routes from "./Routes";
 import { LinkContainer } from "react-router-bootstrap";
@@ -46,20 +46,22 @@ function App() {
   return (
     !isAuthenticating &&
       <div className="App">
-        <Navbar bg="light" fluid collapseOnSelect className = "navbar">
+        <Navbar collapseOnSelect className = "navbar">
           <div className = "container">
-            <Navbar.Brand href= "/">
-              Sheet Music Project
-            </Navbar.Brand>
+            <LinkContainer to="/">
+              <Navbar.Brand className="text-color">
+                Sheet Music Project
+              </Navbar.Brand>
+            </LinkContainer>
           <Navbar.Collapse>
             <Nav pullRight className="ml-auto">
             {isAuthenticated
               ? 
               <>
               <LinkContainer to="/browse">
-                <Nav.Link>Browse</Nav.Link>
+                <Nav.Link className="text-color-navlinks">Browse</Nav.Link>
               </LinkContainer>
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout} className="text-color-navlinks">Logout</Nav.Link>
               
               
               
@@ -68,7 +70,7 @@ function App() {
                 
               : <>
                 <LinkContainer to="/login">
-                  <NavItem>Login</NavItem>
+                  <Nav.Link className="text-color-navlinks">Login</Nav.Link>
                 </LinkContainer>
               </>
             }

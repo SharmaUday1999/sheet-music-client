@@ -1,9 +1,21 @@
 .navbar { 
   margin-bottom:0px;
+  background-color: #188FA7;
+  min-height: 80px;
 }
 
 .App .navbar-brand {
-  font-weight: light;
-  font-size: x-large;
-  text-decoration: none;
+  font-weight: lighter;
+  font-size: 40px;
+}
+
+.text-color{
+  color: white !important;
+}
+
+.text-color-navlinks{
+  color: white !important;
+}
+.text-color-navlinks:hover{
+  color: #E2DBBE !important;
 }
