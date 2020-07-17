@@ -83,11 +83,9 @@ function App() {
 
       </div>
         </Navbar>
-          <div className = "container">
         <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
           <Routes />
         </AppContext.Provider>
-      </div>
       </div>
   );
 }

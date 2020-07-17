@@ -6,6 +6,7 @@ import "./Home.css";
 import { Jumbotron } from '../components/Jumbotron';
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
+import Loader from "../components/Loader";
 
 export default function Home() {
   const [sheets, setSheets] = useState([]);
@@ -37,10 +38,12 @@ export default function Home() {
 
   function renderSheetsList(sheets) {
     return sheets.map((sheet, i) =>
+    <div className = "container">
         <LinkContainer key={sheet.sheetId} to={`/sheet_music_files/${sheet.sheetId}`}>
           <ListGroupItem header={sheet.title.trim().split("\n")[0]}>
           </ListGroupItem>
-        </LinkContainer>);
+        </LinkContainer>
+        </div>);
   }
 
   function renderLander() {
@@ -53,10 +56,17 @@ export default function Home() {
     return (
       <>
       <Jumbotron/>
-      <div className="sheets">
+      <div className="sheets container">
         <PageHeader><h1>Browse Music</h1></PageHeader>
         <ListGroup>
-          {!isLoading && renderSheetsList(sheets)}
+          {isLoading ? 
+          <div className="center ">
+          <Loader
+            
+            isLoading={isLoading}
+            >
+              
+          </Loader></div>: renderSheetsList(sheets)}
         </ListGroup>
       </div>
       </>

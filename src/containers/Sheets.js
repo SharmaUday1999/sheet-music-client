@@ -1,14 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Grid , ButtonGroup, Button} from "react-bootstrap";
+import { ButtonGroup, Button} from "react-bootstrap";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useParams} from "react-router-dom";
 import { API } from "aws-amplify";
 import { onError } from "../libs/errorLib";
-var AWS = require('aws-sdk');
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function Sheets() {
-  const file = useRef(null);
   const { id } = useParams();
   const [url, setUrl] = useState(null);
   const [numPages, setNumPages] = useState(null);

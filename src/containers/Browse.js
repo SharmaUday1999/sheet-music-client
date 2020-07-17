@@ -3,9 +3,9 @@ import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./Home.css";
-import { Jumbotron } from '../components/Jumbotron';
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
+import Loader from "../components/Loader";
 
 
 export default function Browse() {
@@ -48,8 +48,14 @@ export default function Browse() {
     return (
       <div className="sheets">
         <PageHeader><h1>All Music</h1></PageHeader>
-        <ListGroup>
-          {!isLoading && renderSheetsList(sheets)}
+        <ListGroup>{isLoading ? 
+          <div className="center ">
+          <Loader
+            
+            isLoading={isLoading}
+            >
+              
+          </Loader></div>: renderSheetsList(sheets)}
         </ListGroup>
       </div>
     );
@@ -58,7 +64,7 @@ export default function Browse() {
 
 
   return (
-    <div className="Home">
+    <div className="Home container">
       {isAuthenticated ? renderSheetMusic() : null}
     </div>
   );
