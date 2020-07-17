@@ -45,8 +45,9 @@ function App() {
 
   return (
     !isAuthenticating &&
-      <div className="App container">
-        <Navbar fluid collapseOnSelect>
+      <div className="App">
+        <Navbar fluid collapseOnSelect className = "navbar">
+          <div className = "container">
           <Navbar.Header>
             <Navbar.Brand>
               <Link to="/">Sheet Music Project</Link>
@@ -58,7 +59,7 @@ function App() {
             {isAuthenticated
               ? 
               <>
-              <LinkContainer to="/browseSheets">
+              <LinkContainer to="/browse">
                 <NavItem>Browse Sheets</NavItem>
               </LinkContainer>
               <NavItem onClick={handleLogout}>Logout</NavItem>
@@ -79,10 +80,14 @@ function App() {
             }
             </Nav>
           </Navbar.Collapse>
+
+      </div>
         </Navbar>
+          <div className = "container">
         <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
           <Routes />
         </AppContext.Provider>
+      </div>
       </div>
   );
 }
