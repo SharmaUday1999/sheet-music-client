@@ -38,10 +38,11 @@ export default function Browse() {
 
   function renderSheetsList(sheets) {
     return sheets.map((sheet, i) =>
-        <LinkContainer key={sheet.sheetId} to={`/sheet_music_files/${sheet.sheetId}`}>
-          <ListGroupItem header={sheet.title.trim().split("\n")[0]}>
-          </ListGroupItem>
-        </LinkContainer>);
+    <LinkContainer key={sheet.sheetId} to={`/sheet_music_files/${sheet.sheetId}`}>
+      <ListGroup.Item action>
+      {sheet.title.trim().split("\n")[0]}
+      </ListGroup.Item>
+    </LinkContainer>);
   }
 
   function renderSheetMusic() {

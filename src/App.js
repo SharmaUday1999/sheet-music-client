@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Nav, Navbar, NavItem, NavbarBrand} from "react-bootstrap";
+import { Nav, Navbar, NavItem} from "react-bootstrap";
 import "./App.css";
 import Routes from "./Routes";
 import { LinkContainer } from "react-router-bootstrap";
@@ -46,21 +46,20 @@ function App() {
   return (
     !isAuthenticating &&
       <div className="App">
-        <Navbar collapseOnSelect className = "navbar">
+        <Navbar bg="light" fluid collapseOnSelect className = "navbar">
           <div className = "container">
-            <NavbarBrand>
-              <Link to="/">Sheet Music Project</Link>
-            </NavbarBrand>
-            <Navbar.Toggle />
+            <Navbar.Brand href= "/">
+              Sheet Music Project
+            </Navbar.Brand>
           <Navbar.Collapse>
-            <Nav pullRight>
+            <Nav pullRight className="ml-auto">
             {isAuthenticated
               ? 
               <>
               <LinkContainer to="/browse">
-                <NavItem>Browse Sheets</NavItem>
+                <Nav.Link>Browse</Nav.Link>
               </LinkContainer>
-              <NavItem onClick={handleLogout}>Logout</NavItem>
+                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
               
               
               

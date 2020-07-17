@@ -5,4 +5,5 @@
 .App .navbar-brand {
   font-weight: light;
   font-size: x-large;
+  text-decoration: none;
 }
