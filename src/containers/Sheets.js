@@ -4,6 +4,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { useParams} from "react-router-dom";
 import { API } from "aws-amplify";
 import { onError } from "../libs/errorLib";
+import './css/Sheets.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function Sheets() {
@@ -48,7 +49,7 @@ export default function Sheets() {
 
   return(
     <>
-    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}} className="padding">
     <Document
         file = {`${url}`}
         onLoadSuccess={onDocumentLoadSuccess}
@@ -58,10 +59,10 @@ export default function Sheets() {
       
       </div>
     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginBottom : '20vh'}}>
-        <ButtonGroup aria-label="Basic example">
-            <Button variant="secondary" onClick={goToPrevPage}>Prev</Button>
-            <div class="btn btn-static">Page {pageNumber} of {numPages}</div>
-            <Button variant="secondary" onClick={goToNextPage}>Next</Button>
+        <ButtonGroup>
+            <Button className = "custom-btn" onClick={goToPrevPage}>Prev</Button>
+            <Button className = "custom-btn" disabled>Page {pageNumber} of {numPages}</Button>
+            <Button className = "custom-btn"onClick={goToNextPage}>Next</Button>
         </ButtonGroup>
     </div>
     </>

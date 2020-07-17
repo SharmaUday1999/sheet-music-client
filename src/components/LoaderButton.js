@@ -1,5 +1,8 @@
 import React from "react";
-import { Button, Glyphicon } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+// get our fontawesome imports
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./css/LoaderButton.css";
 
 export default function LoaderButton({
@@ -11,10 +14,12 @@ export default function LoaderButton({
   return (
     <Button
       className={`LoaderButton ${className}`}
+      style={{backgroundColor:'#4C6663',color:'white'}}
       disabled={disabled || isLoading}
       {...props}
     >
-      {isLoading && <Glyphicon glyph="refresh" className="spinning" />}
+    
+      {isLoading && <FontAwesomeIcon icon={faHome} className="spinning" />}
       {props.children}
     </Button>
   );

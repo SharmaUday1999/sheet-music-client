@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./css/Home.css";
@@ -38,12 +38,12 @@ export default function Home() {
 
   function renderSheetsList(sheets) {
     return sheets.map((sheet, i) =>
-    <div className = "container">
         <LinkContainer key={sheet.sheetId} to={`/sheet_music_files/${sheet.sheetId}`}>
-          <ListGroupItem header={sheet.title.trim().split("\n")[0]}>
-          </ListGroupItem>
+          <ListGroup.Item action>
+          {sheet.title.trim().split("\n")[0]}
+          </ListGroup.Item>
         </LinkContainer>
-        </div>);
+       );
   }
 
   function renderLander() {
@@ -57,7 +57,7 @@ export default function Home() {
       <>
       <Jumbotron/>
       <div className="sheets container">
-        <PageHeader><h1>Browse Music</h1></PageHeader>
+        <h1 className="h1">Browse Music</h1>
         <ListGroup>
           {isLoading ? 
           <div className="center ">

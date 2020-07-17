@@ -1,5 +1,7 @@
 import React from "react";
-import { Glyphicon } from "react-bootstrap";
+// get our fontawesome imports
+import { faRedo } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./css/Loader.css";
 
 export default function Loader({
@@ -14,7 +16,7 @@ export default function Loader({
       disabled={disabled || isLoading}
       {...props}
     >
-      {isLoading && <Glyphicon glyph="refresh" className="spinning" />}
+      {isLoading && <FontAwesomeIcon icon={faRedo} className="fa-spin" />}
       {props.children}
     </div>
   );
