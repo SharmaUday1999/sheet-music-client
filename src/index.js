@@ -23,7 +23,7 @@ Amplify.configure({
   API: {
     endpoints: [
       {
-        name: "sheet-music",
+        name: "sheet-music-api",
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION
       },

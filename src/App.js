@@ -56,7 +56,18 @@ function App() {
           <Navbar.Collapse>
             <Nav pullRight>
             {isAuthenticated
-              ? <NavItem onClick={handleLogout}>Logout</NavItem>
+              ? 
+              <>
+              <LinkContainer to="/browseSheets">
+                <NavItem>Browse Sheets</NavItem>
+              </LinkContainer>
+              <NavItem onClick={handleLogout}>Logout</NavItem>
+              
+              
+              
+              </>
+                
+                
               : <>
                 <LinkContainer to="/signup">
                   <NavItem>Signup</NavItem>
@@ -65,7 +76,7 @@ function App() {
                   <NavItem>Login</NavItem>
                 </LinkContainer>
               </>
-  }
+            }
             </Nav>
           </Navbar.Collapse>
         </Navbar>
