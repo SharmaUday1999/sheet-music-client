@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
-import { FormGroup, FormControl, FormLabel, Container, Col, Row, Button} from "react-bootstrap";
+import { FormGroup, FormControl, FormLabel, Container, Col, Row, Button, Card} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useAppContext } from "../libs/contextLib";
@@ -35,8 +35,11 @@ export default function Login() {
   }
 
   return (
-    <Container>
-      <div className="Login">
+    <Container style={{paddingTop:"20px"}}>
+      <div className="col d-flex justify-content-center">
+    <Card className="drop-shadow" style={{width:"400px", paddingTop:"20px"}}>
+      <div className="Login" style={{paddingRight:"30px",paddingLeft:"30px"}}>
+        <div className = "title"><h4 className = "font-changes">Log in to Bao Bass</h4></div>
         <form onSubmit={handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <FormLabel>Email</FormLabel>
@@ -55,25 +58,19 @@ export default function Login() {
                 onChange={handleFieldChange}
               />
             </FormGroup>
+          <div style={{textAlign:"center"}}>
+            <Button className="btn2" type="submit">
+              Log In
+            </Button>
+            </div>
           <Row>
-            <Col md={6} mdPush={0}>
-              <LoaderButton
-                block
-                type="submit"
-                bsSize="large"
-                isLoading={isLoading}
-                disabled={!validateForm()}
-              >
-                Login
-              </LoaderButton>
-            </Col>
-            <Col md={6} mdPush={0}>
-              <LinkContainer to="/signup">
-                <Button block bsSize="large">Sign up</Button>
-              </LinkContainer>
-            </Col>
+          <div className="wrapper" style={{paddingTop:"5px"}}>
+            <p>Sigh up for an account <a href="/signup">here</a></p>
+          </div>
           </Row>
         </form>
+      </div>
+      </Card>
       </div>
     </Container>
   );

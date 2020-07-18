@@ -6,7 +6,12 @@ import {
   FormControl,
   FormLabel,
   Tooltip, 
-  OverlayTrigger
+  OverlayTrigger,
+  Card,
+  Row,
+  Container,
+  Col,
+  Button
 } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useAppContext } from "../libs/contextLib";
@@ -86,9 +91,15 @@ export default function Signup() {
   }
   function renderConfirmationForm() {
     return (
+      <Container style={{paddingTop:"20px"}}>
+        <Row>
+          <Col></Col>
+          <Col>
+    <Card className="drop-shadow">
+      <div style={{paddingRight:"30px",paddingLeft:"30px"}}>
       <form onSubmit={handleConfirmationSubmit}>
         <FormGroup controlId="confirmationCode" bsSize="large">
-          <FormLabel>Confirmation Code</FormLabel>
+          <FormLabel style={{paddingTop:"30px"}}>Confirmation Code</FormLabel>
           <FormControl
             autoFocus
             type="tel"
@@ -97,64 +108,68 @@ export default function Signup() {
           />
           <FormText>Please check your email for the code.</FormText>
         </FormGroup>
-        <LoaderButton
-          block
-          type="submit"
-          bsSize="large"
-          isLoading={isLoading}
-          disabled={!validateConfirmationForm()}
-        >
-          Verify
-        </LoaderButton>
-      </form>
+        <div style={{paddingBottom:"30px"}}>
+          <div style={{textAlign:"center"}}>
+            <Button className="btn2" type="submit">
+              Verify
+            </Button>
+            </div>
+        </div>
+      </form></div></Card></Col>
+          <Col></Col>
+        </Row>
+      </Container>
     );
   }
 
   function renderForm() {
     return (
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <FormLabel>Email</FormLabel>
-          <FormControl
-            autoFocus
-            type="email"
-            value={fields.email}
-            onChange={handleFieldChange}
-          />
-        </FormGroup>
-      <OverlayTrigger placement="left" overlay={tooltip}>
-        <FormGroup controlId="password" bsSize="large">
-        FormLabel          <FormControl
-            type="password"
-            value={fields.password}
-            onChange={handleFieldChange}
-          />
-        </FormGroup>
-      </OverlayTrigger>
-        <FormGroup controlId="confirmPassword" bsSize="large">
-          <FormLabel>Confirm Password</FormLabel>
-          <FormControl
-            type="password"
-            onChange={handleFieldChange}
-            value={fields.confirmPassword}
-          />
-        </FormGroup>
-          <LoaderButton
-            block
-            type="submit"
-            bsSize="large"
-            isLoading={isLoading}
-            disabled={!validateForm()}
-          >
-            Signup
-          </LoaderButton>
-      </form>
+
+      <Container style={{paddingTop:"20px"}}>
+      <div className="col d-flex justify-content-center">
+      <Card className="drop-shadow" style={{width:"400px", paddingTop:"20px"}}> 
+      <div className="Signup" style={{paddingRight:"30px",paddingLeft:"30px"}}>
+        <div className = "title"><h4 className = "font-changes">Sign up for Bao Bass</h4></div>
+        <form onSubmit={handleSubmit}>
+          <FormGroup controlId="email" bsSize="large">
+            <FormLabel>Email</FormLabel>
+            <FormControl
+              autoFocus
+              type="email"
+              value={fields.email}
+              onChange={handleFieldChange}
+            />
+          </FormGroup>
+        <OverlayTrigger placement="left" overlay={tooltip}>
+          <FormGroup controlId="password" bsSize="large">
+          Password          <FormControl
+              type="password"
+              value={fields.password}
+              onChange={handleFieldChange}
+            />
+          </FormGroup>
+        </OverlayTrigger>
+          <FormGroup controlId="confirmPassword" bsSize="large">
+            <FormLabel>Confirm Password</FormLabel>
+            <FormControl
+              type="password"
+              onChange={handleFieldChange}
+              value={fields.confirmPassword}
+            />
+          </FormGroup>
+          <div style={{textAlign:"center"}}>
+            <Button className="btn2" type="submit">
+              Sign up
+            </Button>
+            </div>
+        </form>
+        </div>
+      </Card></div>
+    </Container>
     );
   }
 
-  return (
-    <div className="Signup">
-      {newUser === null ? renderForm() : renderConfirmationForm()}
-    </div>
+  return (<>
+      {newUser === null ? renderForm() : renderConfirmationForm()}</>
   );
 }

@@ -1,13 +1,25 @@
 
 .custom-btn {
-  background: #44bba4 !important;
-  color: #fff !important;
-  border: 0px solid #44bba4 !important;
+  background: #ECF8F8 !important;
+  color: #B2967D !important;
+  border: 0px solid #ECF8F8 !important;
   padding: 5px 10px !important;
   text-transform: uppercase;
+}
+
+
+.h1 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 200;
+  color: #B2967D;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
 }
 
 .padding {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+.position_menu{
+  padding-top: 300px ;
 }

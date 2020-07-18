@@ -1,21 +1,46 @@
 .navbar { 
   margin-bottom:0px;
-  background-color: #188FA7;
+  background-color: #B2967D;
+  min-height: 80px;   
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+.bottom-navbar{
+  margin-bottom:0px;
+  background-color: #745A44;
   min-height: 80px;
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;
 }
 
 .App .navbar-brand {
   font-weight: lighter;
   font-size: 40px;
 }
-
+.custom-search-button{
+  color: #fff !important;
+  border-color: #fff;
+}
 .text-color{
-  color: white !important;
+  color: #fff !important;
 }
 
 .text-color-navlinks{
-  color: white !important;
+  color: #ffffff !important;
 }
 .text-color-navlinks:hover{
-  color: #E2DBBE !important;
+  color: #E6BEAE !important;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrap{
+  flex: 1;
 }

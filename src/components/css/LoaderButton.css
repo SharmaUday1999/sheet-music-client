@@ -7,3 +7,21 @@
     from { transform: scale(1) rotate(0deg); }
     to { transform: scale(1) rotate(360deg); }
   }
+
+  .btn {
+
+    background-color: #B2967D !important;
+    color: #fff !important;
+    border: 0px solid #ECF8F8 !important;
+    padding: 5px 10px !important;
+    text-transform: uppercase;
+  }
+
+  .btn:hover {
+    background-color: #ECF8F8 !important;
+    color: #B2967D !important;
+    border: 0px solid #ECF8F8 !important;
+    padding: 5px 10px !important;
+    text-transform: uppercase;
+  }
+  

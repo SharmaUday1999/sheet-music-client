@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./css/Home.css";

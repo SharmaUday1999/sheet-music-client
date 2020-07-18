@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ListGroup } from "react-bootstrap";
+import { ListGroup, Container, Col, Row , Card} from "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import "./css/Home.css";
@@ -7,6 +7,8 @@ import { Jumbotron } from '../components/Jumbotron';
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 import Loader from "../components/Loader";
+import { faMusic, faFingerprint, faGuitar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Home() {
   const [sheets, setSheets] = useState([]);
@@ -48,7 +50,28 @@ export default function Home() {
 
   function renderLander() {
     return (
+      <>
       <Jumbotron/>
+      <Container style={{paddingBottom:"50px"}}>
+        <div style={{textAlign:"center"}}>
+          <h1 className="sans-font">Why Bao Bass?</h1>
+        </div>
+        <Row style={{paddingTop:"50px"}} >
+          <Col style={{textAlign:"center"}}>
+            <FontAwesomeIcon style={{fontSize:"60px", fontWeight:"300", paddingBottom:"10px"}} icon={faMusic} color="#B2967D"/>
+            <p>Sheet music you actually WANT to play</p>
+          </Col>
+          <Col style={{textAlign:"center"}}>
+            <FontAwesomeIcon style={{fontSize:"60px", fontWeight:"300", paddingBottom:"10px"}} icon={faFingerprint} color="#B2967D"/>
+            <p>Some other text</p>
+          </Col>
+          <Col style={{textAlign:"center"}}>
+            <FontAwesomeIcon style={{fontSize:"60px", fontWeight:"300", paddingBottom:"10px"}}  icon={faGuitar} color="#B2967D"/>
+            <p>Some other text</p>
+          </Col>
+        </Row>
+      </Container>
+      </>
     );
   }
 
@@ -58,7 +81,7 @@ export default function Home() {
       <Jumbotron/>
       <div className="sheets container">
         <h1 className="h1">Browse Music</h1>
-        <ListGroup>
+        <ListGroup className="padding_listgroup">
           {isLoading ? 
           <div className="center ">
           <Loader
