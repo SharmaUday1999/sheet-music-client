@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { ListGroup, Container, Col, Row } from "react-bootstrap";
+import { ListGroup, Container, Col, Row, Table } from "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import { Jumbotron } from '../components/Jumbotron';
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
-import { faMusic, faFingerprint, faGuitar , faRedo} from "@fortawesome/free-solid-svg-icons";
+import { faMusic, faMoneyCheckAlt, faGuitar , faRedo} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from 'styled-components';
 
@@ -22,12 +22,9 @@ export default function Home() {
   `;
   const StyledH1onlyColor = styled(StyledH1)`
     color: #745A44 !important;    
-  
   `;
   const StyledPageTitle = styled(StyledH1)`
-
     color: #745A44 !important;    
-
     &:after {
       content:' ';
       display:block;
@@ -45,6 +42,11 @@ export default function Home() {
     font-weight: 300;
     padding-bottom: 10px; 
   `;
+  const StyledTableHeader = styled.th`
+    color: #745A44 !important;  
+    font-weight:300;
+  `;
+
 
   const [sheets, setSheets] = useState([]);
   const { isAuthenticated } = useAppContext();
@@ -76,9 +78,17 @@ export default function Home() {
   function renderSheetsList(sheets) {
     return sheets.map((sheet, i) =>
         <LinkContainer key={sheet.sheetId} to={`/sheet_music_files/${sheet.sheetId}`}>
-          <ListGroup.Item action>
-            {sheet.title.trim().split("\n")[0]}
-          </ListGroup.Item>
+          <tr>
+            <td>
+              {sheet.title.trim().split("\n")[0]}
+            </td>
+            <td>
+              {sheet.composer.trim().split("\n")[0]}
+            </td>
+            <td>
+              {sheet.publisher.trim().split("\n")[0]}
+            </td>
+          </tr>
         </LinkContainer>
        );
   }
@@ -97,8 +107,8 @@ export default function Home() {
             <p>Sheet music you actually WANT to play</p>
           </Col>
           <Col style={{textAlign:"center"}}>
-            <StyledFontAwsome icon={faFingerprint} color="#B2967D"/>
-            <p>Some other text</p>
+            <StyledFontAwsome icon={faMoneyCheckAlt} color="#B2967D"/>
+            <p>Incredibly Afforable </p>
           </Col>
           <Col style={{textAlign:"center"}}>
             <StyledFontAwsome icon={faGuitar} color="#B2967D"/>
@@ -116,11 +126,23 @@ export default function Home() {
       <Jumbotron/>
       <div className="sheets container">
         <StyledPageTitle>Browse Music</StyledPageTitle>
-        <ListGroup style={{paddingBottom:"30px"}}>
+
+          <Table striped borderless hover>
+          <thead>
+            <tr>
+              <StyledTableHeader>Title</StyledTableHeader>
+              <StyledTableHeader>Composer</StyledTableHeader>
+              <StyledTableHeader>Publisher</StyledTableHeader>
+            </tr>
+          </thead>
+
+          <tbody>
+
           {isLoading ? 
-          <div style={{textAlign:"center"}}>
-          <FontAwesomeIcon icon={faRedo} className="fa-spin" /></div>: renderSheetsList(sheets)}
-        </ListGroup>
+          <CenteredDiv>
+          <FontAwesomeIcon icon={faRedo} className="fa-spin" /></CenteredDiv>: renderSheetsList(sheets)}
+          </tbody>
+          </Table>
       </div>
       </>
     );

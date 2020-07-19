@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ListGroup } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
 import { API } from "aws-amplify";
@@ -29,6 +29,14 @@ export default function Browse() {
     -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
     -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
   `;
+  const StyledTableHeader = styled.th`
+  color: #745A44 !important;  
+  font-weight:300;
+`;
+  const CenteredDiv = styled.div`
+    text-align: center;
+  `;
+
 
   const [sheets, setSheets] = useState([]);
   const { isAuthenticated } = useAppContext();
@@ -59,10 +67,18 @@ export default function Browse() {
 
   function renderSheetsList(sheets) {
     return sheets.map((sheet, i) =>
-    <LinkContainer key={sheet.sheetId} to={`/sheet_music_files/${sheet.sheetId}`}>
-      <ListGroup.Item action>
-      {sheet.title.trim().split("\n")[0]}
-      </ListGroup.Item>
+      <LinkContainer key={sheet.sheetId} to={`/sheet_music_files/${sheet.sheetId}`}>
+      <tr>
+        <td>
+          {sheet.title.trim().split("\n")[0]}
+        </td>
+        <td>
+          {sheet.composer.trim().split("\n")[0]}
+        </td>
+        <td>
+          {sheet.publisher.trim().split("\n")[0]}
+        </td>
+      </tr>
     </LinkContainer>);
   }
 
@@ -70,9 +86,21 @@ export default function Browse() {
     return (
       <>
         <StyledH1>All Music</StyledH1>
-        <ListGroup>{isLoading ? 
-          <FontAwesomeIcon icon={faRedo} className="fa-spin" />: renderSheetsList(sheets)}
-        </ListGroup>
+        <Table striped borderless hover>
+          <thead>
+            <tr>
+              <StyledTableHeader>Title</StyledTableHeader>
+              <StyledTableHeader>Composer</StyledTableHeader>
+              <StyledTableHeader>Publisher</StyledTableHeader>
+            </tr>
+          </thead>
+
+          <tbody>
+          {isLoading ? 
+          <CenteredDiv>
+          <FontAwesomeIcon icon={faRedo} className="fa-spin" /></CenteredDiv>: renderSheetsList(sheets)}
+          </tbody>
+        </Table>
       </>
     );
   }
