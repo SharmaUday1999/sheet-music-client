@@ -2,13 +2,34 @@ import React, { useState, useEffect } from "react";
 import { ListGroup } from "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
-import "./css/Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
-import Loader from "../components/Loader";
+import styled from "styled-components";
+import { faRedo } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 export default function Browse() {
+
+  const StyledH1 = styled.h1`
+
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+  padding: 10px;
+  color: #745A44 !important;    
+
+  &:after {
+    content:' ';
+    display:block;
+    border:1px solid #E6BEAE;
+    border-radius:1px;
+    -webkit-border-radius:1px;
+    -moz-border-radius:1px;
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+  `;
+
   const [sheets, setSheets] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
@@ -47,18 +68,12 @@ export default function Browse() {
 
   function renderSheetMusic() {
     return (
-      <div className="sheets">
-        <h1 className="h1 padding">All Music</h1>
+      <>
+        <StyledH1>All Music</StyledH1>
         <ListGroup>{isLoading ? 
-          <div className="center ">
-          <Loader
-            
-            isLoading={isLoading}
-            >
-              
-          </Loader></div>: renderSheetsList(sheets)}
+          <FontAwesomeIcon icon={faRedo} className="fa-spin" />: renderSheetsList(sheets)}
         </ListGroup>
-      </div>
+      </>
     );
   }
 

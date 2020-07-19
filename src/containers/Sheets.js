@@ -4,11 +4,45 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { useParams} from "react-router-dom";
 import { API } from "aws-amplify";
 import { onError } from "../libs/errorLib";
-import './css/Sheets.css';
-import Loader from "../components/Loader";
+import styled from "styled-components";
+import { faRedo } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 export default function Sheets() {
+  const CenteredDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    alignItems: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  `;
+  const SheetTitle = styled.h1`
+  
+    font-family: "Open Sans", sans-serif;
+    font-weight: 200;
+    color: #B2967D;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+  `;
+  const StyledButtonGroup = styled(Button)`
+    background: #ECF8F8 !important;
+    color: #B2967D !important;
+    border: 0px solid #ECF8F8 !important;
+    padding: 5px 10px !important;
+    text-transform: uppercase;
+
+    &:hover {
+
+      background: #B2967D !important;
+      color: #ECF8F8 !important;
+      border: 0px solid #ECF8F8 !important;
+      padding: 5px 10px !important;
+      text-transform: uppercase;
+    }
+  `;
+
+
   const { id } = useParams();
   const [sheetUrl, setSheetUrl] = useState(null);
   const [sheetTitle, setSheetTitle] = useState(null);
@@ -56,32 +90,31 @@ export default function Sheets() {
 
   return(
     <Container>
-      {loading ? <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}} className="padding">
-                  <Loader isLoading = {loading}>
-                    </Loader>
-                </div> : 
+      {loading ? <CenteredDiv>
+        <FontAwesomeIcon icon={faRedo} className="fa-spin" />
+                </CenteredDiv> : 
       <>
       <Row>
         <Col sm={8}>
-          <h1 className="h1">{sheetTitle}</h1>
+          <SheetTitle>{sheetTitle}</SheetTitle>
         </Col>
         
       </Row>
       <Row>
         <Col sm={8}>
 
-          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}} className="padding">
+          <CenteredDiv>
           <Document
               file = {`${sheetUrl}`}
               onLoadSuccess={onDocumentLoadSuccess}
             >
-              <Page pageNumber={pageNumber} />    
+                <Page pageNumber={pageNumber} />    
             </Document>
             
-            </div>
+            </CenteredDiv>
         </Col>
         <Col sm={4}>
-          <div className="position_menu">
+          <div className="d-none d-md-block" style={{paddingTop: "300px"}}>
             <ListGroup>
               <ListGroup.Item>Composer: {sheetComposer}</ListGroup.Item>
               <ListGroup.Item>Difficulty: null</ListGroup.Item>
@@ -92,13 +125,13 @@ export default function Sheets() {
       </Row>
       <Row>
         <Col sm={8}>
-          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', marginBottom : '20vh'}}>
+          <CenteredDiv style={{marginBottom:"20vh", textAlign:"center"}}>
               <ButtonGroup>
-                  <Button className = "custom-btn" onClick={goToPrevPage}>Prev</Button>
-                  <Button className = "custom-btn" disabled>Page {pageNumber} of {numPages}</Button>
-                  <Button className = "custom-btn"onClick={goToNextPage}>Next</Button>
+                  <StyledButtonGroup onClick={goToPrevPage}>Prev</StyledButtonGroup>
+                  <StyledButtonGroup disabled>Page {pageNumber} of {numPages}</StyledButtonGroup>
+                  <StyledButtonGroup onClick={goToNextPage}>Next</StyledButtonGroup>
               </ButtonGroup>
-          </div>
+          </CenteredDiv>
         </Col>
       </Row>
       </>}

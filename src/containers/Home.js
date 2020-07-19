@@ -1,16 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { ListGroup, Container, Col, Row , Card} from "react-bootstrap";
+import { ListGroup, Container, Col, Row } from "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { onError } from "../libs/errorLib";
-import "./css/Home.css";
 import { Jumbotron } from '../components/Jumbotron';
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
-import Loader from "../components/Loader";
-import { faMusic, faFingerprint, faGuitar } from "@fortawesome/free-solid-svg-icons";
+import { faMusic, faFingerprint, faGuitar , faRedo} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from 'styled-components';
 
 export default function Home() {
+  const StyledContainer = styled(Container)`
+    padding-bottom: 50px;
+  `;
+  const CenteredDiv = styled.div`
+    text-align: center;
+  `;
+  const StyledH1 = styled.h1`
+    font-family: "Open Sans", sans-serif;
+    font-weight: 100;
+  `;
+  const StyledH1onlyColor = styled(StyledH1)`
+    color: #745A44 !important;    
+  
+  `;
+  const StyledPageTitle = styled(StyledH1)`
+
+    color: #745A44 !important;    
+
+    &:after {
+      content:' ';
+      display:block;
+      border:1px solid #E6BEAE;
+      border-radius:1px;
+      -webkit-border-radius:1px;
+      -moz-border-radius:1px;
+      box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+      -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+      -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+  }
+  `;
+  const StyledFontAwsome = styled(FontAwesomeIcon)`
+    font-size: 60px; 
+    font-weight: 300;
+    padding-bottom: 10px; 
+  `;
+
   const [sheets, setSheets] = useState([]);
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
@@ -52,25 +87,25 @@ export default function Home() {
     return (
       <>
       <Jumbotron/>
-      <Container style={{paddingBottom:"50px"}}>
-        <div style={{textAlign:"center"}}>
-          <h1 className="sans-font">Why Bao Bass?</h1>
-        </div>
+      <StyledContainer>
+        <CenteredDiv>
+          <StyledH1onlyColor>Why Bao Bass?</StyledH1onlyColor>
+        </CenteredDiv>
         <Row style={{paddingTop:"50px"}} >
           <Col style={{textAlign:"center"}}>
-            <FontAwesomeIcon style={{fontSize:"60px", fontWeight:"300", paddingBottom:"10px"}} icon={faMusic} color="#B2967D"/>
+            <StyledFontAwsome icon={faMusic} color="#B2967D"/>
             <p>Sheet music you actually WANT to play</p>
           </Col>
           <Col style={{textAlign:"center"}}>
-            <FontAwesomeIcon style={{fontSize:"60px", fontWeight:"300", paddingBottom:"10px"}} icon={faFingerprint} color="#B2967D"/>
+            <StyledFontAwsome icon={faFingerprint} color="#B2967D"/>
             <p>Some other text</p>
           </Col>
           <Col style={{textAlign:"center"}}>
-            <FontAwesomeIcon style={{fontSize:"60px", fontWeight:"300", paddingBottom:"10px"}}  icon={faGuitar} color="#B2967D"/>
+            <StyledFontAwsome icon={faGuitar} color="#B2967D"/>
             <p>Some other text</p>
           </Col>
         </Row>
-      </Container>
+      </StyledContainer>
       </>
     );
   }
@@ -80,16 +115,11 @@ export default function Home() {
       <>
       <Jumbotron/>
       <div className="sheets container">
-        <h1 className="h1">Browse Music</h1>
-        <ListGroup className="padding_listgroup">
+        <StyledPageTitle>Browse Music</StyledPageTitle>
+        <ListGroup style={{paddingBottom:"30px"}}>
           {isLoading ? 
-          <div className="center ">
-          <Loader
-            
-            isLoading={isLoading}
-            >
-              
-          </Loader></div>: renderSheetsList(sheets)}
+          <div style={{textAlign:"center"}}>
+          <FontAwesomeIcon icon={faRedo} className="fa-spin" /></div>: renderSheetsList(sheets)}
         </ListGroup>
       </div>
       </>
@@ -97,8 +127,8 @@ export default function Home() {
   }
 
   return (
-    <div className="Home">
+    <>
       {isAuthenticated ? renderSheetMusic() : renderLander()}
-    </div>
+    </>
   );
 }

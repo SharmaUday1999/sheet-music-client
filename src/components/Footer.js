@@ -1,45 +1,72 @@
 import React from 'react';
-import './css/Footer.css';
 import { Container , Row, Col} from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
+import styled from 'styled-components';
 
 const Footer = () => {
+    const StyledRow = styled(Row)`
+        padding-top: 10px;
+        padding-bottom: 10px;
+    `;
+    const StyledHeader2 = styled.h2`
+        font-weight: 300;
+    `;
+    const StyledHeader5 = styled.h5`
+        font-weight: 300;
+    `;
+    const StyledLink = styled.a`
+        color: white;
+
+        &:hover {
+            color: white;
+        }
+    `;
+    const StyledFootedDiv = styled.div`
+        position: relative;
+        bottom: 0;
+        width: 100;
+        background-color: #745A44;
+        color: #fff;
+        padding-top: 5px;
+        border-top: 1px solid #D5B79A;
+    `;
+
     return(
-        <div className = "main-footer">
+        <StyledFootedDiv>
             <Container>
-                <Row style={{paddingTop:'10px', paddingBottom:'10px'}}>
+                <StyledRow>
                     <Col>
-                        <h2 className="font-changes">Bao Bass</h2>
+                        <StyledHeader2>Bao Bass</StyledHeader2>
                     </Col>
                     <Col>
-                        <h5 className="font-changes">Navigation</h5>
+                        <StyledHeader5>Navigation</StyledHeader5>
                         <ul className = "list-unstyled" style={{fontFamily:"Open Sans, sans-serif", fontWeight:"300"}}>
                             <LinkContainer to="/">
-                                <a className="link"><li>Home</li></a>
+                                <StyledLink><li>Home</li></StyledLink>
                             </LinkContainer>
                             <LinkContainer  to="/">
-                                <a className="link"><li>Pricing</li></a>
+                                <StyledLink><li>Pricing</li></StyledLink>
                             </LinkContainer>
                             <LinkContainer to="/">
-                                <a className="link"><li>About</li></a>
+                                <StyledLink><li>About</li></StyledLink>
                             </LinkContainer>
                         </ul>
                     </Col>
                     <Col>
-                        <h5 className="font-changes">More</h5>                
+                        <StyledHeader5>More</StyledHeader5>                
                         <ul className = "list-unstyled" style={{fontFamily:"Open Sans, sans-serif", fontWeight:"300"}}>        
                              <LinkContainer to="/">
-                                <a className="link"><li>Terms and conditions</li></a>
+                                <StyledLink><li>Terms and conditions</li></StyledLink>
                             </LinkContainer>
                             <LinkContainer  to="/">
-                                <a className="link"><li>Privacy Policy</li></a>
+                                <StyledLink><li>Privacy Policy</li></StyledLink>
                             </LinkContainer>
                         </ul>
                     </Col>
-                </Row>
+                </StyledRow>
             </Container>
                     <div style={{textAlign:"center", backgroundColor:"#5A4635", paddingTop:'5px', paddingBottom:'5px', fontWeight: '100'}}>©Bao Bass Inc. All rights reserved.</div>
-        </div>
+        </StyledFootedDiv>
     )
 }
 export default Footer;

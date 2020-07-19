@@ -10,17 +10,54 @@ import {
   Card,
   Row,
   Container,
-  Col,
-  Button
+  Col
 } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useAppContext } from "../libs/contextLib";
 import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
-import "./css/Signup.css";
 import { Auth } from "aws-amplify";
+import styled from "styled-components";
 
 export default function Signup() {
+
+  const StyledCard = styled(Card)`
+      width: 400px;
+      background-color: #F9F5F1;
+      border: 1px solid #D5B79A;
+      box-shadow: 0 1px 3px 0 rgba(63,63,68,0.15);
+  `;
+  const CardDiv = styled.div`
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-right: 30px;
+  padding-left: 30px;
+`;
+  const StyledTitleDiv = styled.div`
+  text-align: center; 
+  padding-bottom: 20px;
+
+  &:after {
+    content:' ';
+    display:block;
+    border:1px solid #E6BEAE;
+    border-radius:1px;
+    -webkit-border-radius:1px;
+    -moz-border-radius:1px;
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+    -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+  }
+  `;
+  const StyledLoginTitle = styled.h4`
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+
+
+  `;
+
+
+
   const [fields, handleFieldChange] = useFormFields({
     firstName: "",
     lastName: "",
@@ -95,8 +132,8 @@ export default function Signup() {
         <Row>
           <Col></Col>
           <Col>
-    <Card className="drop-shadow">
-      <div style={{paddingRight:"30px",paddingLeft:"30px"}}>
+    <StyledCard>
+      <CardDiv>
       <form onSubmit={handleConfirmationSubmit}>
         <FormGroup controlId="confirmationCode" bsSize="large">
           <FormLabel style={{paddingTop:"30px"}}>Confirmation Code</FormLabel>
@@ -110,12 +147,18 @@ export default function Signup() {
         </FormGroup>
         <div style={{paddingBottom:"30px"}}>
           <div style={{textAlign:"center"}}>
-            <Button className="btn2" type="submit">
-              Verify
-            </Button>
+          <LoaderButton
+              block
+              type="submit"
+              bsSize="large"
+              isLoading={isLoading}
+              disabled={!validateForm()}
+            >
+              Signup
+            </LoaderButton>
             </div>
         </div>
-      </form></div></Card></Col>
+      </form></CardDiv></StyledCard></Col>
           <Col></Col>
         </Row>
       </Container>
@@ -127,9 +170,9 @@ export default function Signup() {
 
       <Container style={{paddingTop:"20px"}}>
       <div className="col d-flex justify-content-center">
-      <Card className="drop-shadow" style={{width:"400px", paddingTop:"20px"}}> 
-      <div className="Signup" style={{paddingRight:"30px",paddingLeft:"30px"}}>
-        <div className = "title"><h4 className = "font-changes">Sign up for Bao Bass</h4></div>
+      <StyledCard> 
+      <CardDiv>
+        <StyledTitleDiv><StyledLoginTitle>Sign up for Bao Bass</StyledLoginTitle></StyledTitleDiv>
         <form onSubmit={handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <FormLabel>Email</FormLabel>
@@ -157,14 +200,18 @@ export default function Signup() {
               value={fields.confirmPassword}
             />
           </FormGroup>
-          <div style={{textAlign:"center"}}>
-            <Button className="btn2" type="submit">
-              Sign up
-            </Button>
-            </div>
+            <LoaderButton
+              block
+              type="submit"
+              bsSize="large"
+              isLoading={isLoading}
+              disabled={!validateConfirmationForm()}
+            >
+              Signup
+            </LoaderButton>
         </form>
-        </div>
-      </Card></div>
+        </CardDiv>
+      </StyledCard></div>
     </Container>
     );
   }
