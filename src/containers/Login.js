@@ -96,6 +96,7 @@ export default function Login() {
             <FormGroup controlId="password" bsSize="large">
               <FormLabel>Password</FormLabel>
               <FormControl
+                autoFocus
                 type="password"
                 value={fields.password}
                 onChange={handleFieldChange}

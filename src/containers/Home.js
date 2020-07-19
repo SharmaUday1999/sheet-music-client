@@ -77,7 +77,7 @@ export default function Home() {
     return sheets.map((sheet, i) =>
         <LinkContainer key={sheet.sheetId} to={`/sheet_music_files/${sheet.sheetId}`}>
           <ListGroup.Item action>
-          {sheet.title.trim().split("\n")[0]}
+            {sheet.title.trim().split("\n")[0]}
           </ListGroup.Item>
         </LinkContainer>
        );

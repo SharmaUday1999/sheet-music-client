@@ -148,6 +148,7 @@ export default function Signup() {
         <div style={{paddingBottom:"30px"}}>
           <div style={{textAlign:"center"}}>
           <LoaderButton
+            autoFocus
               block
               type="submit"
               bsSize="large"
@@ -186,6 +187,7 @@ export default function Signup() {
         <OverlayTrigger placement="left" overlay={tooltip}>
           <FormGroup controlId="password" bsSize="large">
           Password          <FormControl
+          autoFocus
               type="password"
               value={fields.password}
               onChange={handleFieldChange}
@@ -195,12 +197,14 @@ export default function Signup() {
           <FormGroup controlId="confirmPassword" bsSize="large">
             <FormLabel>Confirm Password</FormLabel>
             <FormControl
+            autoFocus
               type="password"
               onChange={handleFieldChange}
               value={fields.confirmPassword}
             />
           </FormGroup>
             <LoaderButton
+              autoFocus
               block
               type="submit"
               bsSize="large"
