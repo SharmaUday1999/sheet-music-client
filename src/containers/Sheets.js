@@ -17,6 +17,10 @@ export default function Sheets() {
     padding-top: 10px;
     padding-bottom: 10px;
   `;
+  const StyledDocument = styled(Document)`
+    width: 658px; 
+    height: 866px;
+  `;
   const SheetTitle = styled.h1`
   
     font-family: "Open Sans", sans-serif;
@@ -104,12 +108,12 @@ export default function Sheets() {
         <Col sm={8}>
 
           <CenteredDiv>
-          <Document
+          <StyledDocument
               file = {`${sheetUrl}`}
               onLoadSuccess={onDocumentLoadSuccess}
             >
                 <Page pageNumber={pageNumber} />    
-            </Document>
+            </StyledDocument>
             
             </CenteredDiv>
         </Col>

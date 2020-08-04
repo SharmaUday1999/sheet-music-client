@@ -113,7 +113,7 @@ function App() {
               ? 
               <>
             <Form inline>
-              <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+              <FormControl type="text" placeholder="Search for a song" className="mr-sm-2" />
               <StyledButton>Search</StyledButton>
             </Form>
             <Nav pullRight className="ml-auto">

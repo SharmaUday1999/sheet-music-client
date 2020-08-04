@@ -6,49 +6,50 @@ import { useAppContext } from "../libs/contextLib";
 import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
 import styled from 'styled-components'
+const StyledCard = styled(Card)`
+width: 400px;
+background-color: #F9F5F1;
+border: 1px solid #D5B79A;
+box-shadow: 0 1px 3px 0 rgba(63,63,68,0.15);
+`;
+const CardDiv = styled.div`
+padding-top: 60px;
+padding-bottom: 60px;
+padding-right: 30px;
+padding-left: 30px;
+`;
+const StyledTitleDiv = styled.div`
+text-align: center; 
+padding-bottom: 20px;
 
-export default function Login() {
-  const StyledCard = styled(Card)`
-      width: 400px;
-      background-color: #F9F5F1;
-      border: 1px solid #D5B79A;
-      box-shadow: 0 1px 3px 0 rgba(63,63,68,0.15);
-  `;
-  const CardDiv = styled.div`
-    padding-top: 60px;
-    padding-bottom: 60px;
-    padding-right: 30px;
-    padding-left: 30px;
-  `;
-  const StyledTitleDiv = styled.div`
-    text-align: center; 
-    padding-bottom: 20px;
+&:after {
+content:' ';
+display:block;
+border:1px solid #E6BEAE;
+border-radius:1px;
+-webkit-border-radius:1px;
+-moz-border-radius:1px;
+box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+-moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+`;
+const StyledLoginTitle = styled.h4`
+font-family: "Open Sans", sans-serif;
+font-weight: 300;
 
-    &:after {
-      content:' ';
-      display:block;
-      border:1px solid #E6BEAE;
-      border-radius:1px;
-      -webkit-border-radius:1px;
-      -moz-border-radius:1px;
-      box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-      -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-      -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-    }
-  `;
-  const StyledLoginTitle = styled.h4`
-    font-family: "Open Sans", sans-serif;
-    font-weight: 300;
 
-    
-  `;
-  const WrapperDiv = styled.div`
-    width: 100%;
-    padding-top: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `;
+`;
+const WrapperDiv = styled.div`
+width: 100%;
+padding-top: 5px;
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
+
+const Login = () => {
 
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
@@ -96,7 +97,6 @@ export default function Login() {
             <FormGroup controlId="password" bsSize="large">
               <FormLabel>Password</FormLabel>
               <FormControl
-                autoFocus
                 type="password"
                 value={fields.password}
                 onChange={handleFieldChange}
@@ -122,5 +122,11 @@ export default function Login() {
       </StyledCard>
       </div>
     </Container>
+  );
+}
+
+export default function App() {
+  return (
+      <Login />
   );
 }

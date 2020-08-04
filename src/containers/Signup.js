@@ -19,49 +19,44 @@ import { onError } from "../libs/errorLib";
 import { Auth } from "aws-amplify";
 import styled from "styled-components";
 
-export default function Signup() {
-
-  const StyledCard = styled(Card)`
-      width: 400px;
-      background-color: #F9F5F1;
-      border: 1px solid #D5B79A;
-      box-shadow: 0 1px 3px 0 rgba(63,63,68,0.15);
-  `;
-  const CardDiv = styled.div`
-  padding-top: 60px;
-  padding-bottom: 60px;
-  padding-right: 30px;
-  padding-left: 30px;
+const StyledCard = styled(Card)`
+    width: 400px;
+    background-color: #F9F5F1;
+    border: 1px solid #D5B79A;
+    box-shadow: 0 1px 3px 0 rgba(63,63,68,0.15);
 `;
-  const StyledTitleDiv = styled.div`
-  text-align: center; 
-  padding-bottom: 20px;
+const CardDiv = styled.div`
+padding-top: 60px;
+padding-bottom: 60px;
+padding-right: 30px;
+padding-left: 30px;
+`;
+const StyledTitleDiv = styled.div`
+text-align: center; 
+padding-bottom: 20px;
 
-  &:after {
-    content:' ';
-    display:block;
-    border:1px solid #E6BEAE;
-    border-radius:1px;
-    -webkit-border-radius:1px;
-    -moz-border-radius:1px;
-    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-    -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
-  }
-  `;
-  const StyledLoginTitle = styled.h4`
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+&:after {
+  content:' ';
+  display:block;
+  border:1px solid #E6BEAE;
+  border-radius:1px;
+  -webkit-border-radius:1px;
+  -moz-border-radius:1px;
+  box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+  -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+  -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+`;
+const StyledLoginTitle = styled.h4`
+font-family: "Open Sans", sans-serif;
+font-weight: 300;
 
 
-  `;
+`;
 
-
+const SignUp = () => {
 
   const [fields, handleFieldChange] = useFormFields({
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -148,12 +143,11 @@ export default function Signup() {
         <div style={{paddingBottom:"30px"}}>
           <div style={{textAlign:"center"}}>
           <LoaderButton
-            autoFocus
               block
               type="submit"
               bsSize="large"
               isLoading={isLoading}
-              disabled={!validateForm()}
+              disabled={!validateConfirmationForm()}
             >
               Signup
             </LoaderButton>
@@ -168,7 +162,6 @@ export default function Signup() {
 
   function renderForm() {
     return (
-
       <Container style={{paddingTop:"20px"}}>
       <div className="col d-flex justify-content-center">
       <StyledCard> 
@@ -186,8 +179,8 @@ export default function Signup() {
           </FormGroup>
         <OverlayTrigger placement="left" overlay={tooltip}>
           <FormGroup controlId="password" bsSize="large">
-          Password          <FormControl
-          autoFocus
+          <FormLabel>Password</FormLabel>      
+           <FormControl
               type="password"
               value={fields.password}
               onChange={handleFieldChange}
@@ -197,19 +190,17 @@ export default function Signup() {
           <FormGroup controlId="confirmPassword" bsSize="large">
             <FormLabel>Confirm Password</FormLabel>
             <FormControl
-            autoFocus
               type="password"
               onChange={handleFieldChange}
               value={fields.confirmPassword}
             />
           </FormGroup>
             <LoaderButton
-              autoFocus
               block
               type="submit"
               bsSize="large"
               isLoading={isLoading}
-              disabled={!validateConfirmationForm()}
+              disabled={!validateForm()}
             >
               Signup
             </LoaderButton>
@@ -222,5 +213,13 @@ export default function Signup() {
 
   return (<>
       {newUser === null ? renderForm() : renderConfirmationForm()}</>
+  );
+}
+
+
+
+export default function App() {
+  return (
+      <SignUp />
   );
 }
